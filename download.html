@@ -1,0 +1,23 @@
+<div class="container-fluid">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			下载文件
+		</div>
+		<div class="panel-body">
+			<form  class="form－horizontal clearfix">
+				<div class="form-group">
+				    <div class="col-sm-10">
+				      <input type="text" class="form-control" id="inputEmail3" placeholder="例如：第三季" ng-model="fileName">
+				    </div>
+				    <button class="btn btn-info" ng-click="search(fileName)">搜索</button>
+				  </div>
+			</form>
+			<ul>
+				<p ng-repeat="file in list" class="bg-primary clearfix">
+					<a ng-href="{{file.url}}" ng-bind="file.name"></a>
+					<button class="btn btn-danger btn-sm pull-right" ng-click="download(file.utl)" >下载</button>
+				</p>
+			</ul>
+		</div>
+	</div>
+</div>
