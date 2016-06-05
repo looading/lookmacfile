@@ -10,8 +10,8 @@ var walk = function(dir) {
         temp = dir + '/' + file
         var stat = fs.statSync(temp)
         var back = file.split('.');
-        // var filter = ['pdf', 'doc', 'docx', 'zip', 'ppt', 'sql', 'pptx', 'jpg', 'png', 'bmp', 'rar', 'td', 'cfg'];
-        var filter = [];
+        var filter = ['pdf', 'doc', 'docx', 'zip', 'ppt', 'sql', 'pptx', 'jpg', 'png', 'bmp', 'rar', 'td', 'cfg'];
+        // var filter = [];
     
         if(stat.isFile() && file[0] != '.'  && filter.indexOf(back[back.length-1]) == -1)
         	results.push(file)
