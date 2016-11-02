@@ -2,6 +2,7 @@ var express = require('express')
 var app = express()
 var fs = require('fs')
 var bodyParser = require('body-parser')
+var conf = require('./config')
 
 
 
@@ -29,7 +30,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(express.static(__dirname))
-app.use(express.static('/Users/ctyloading/Downloads'))
+app.use(express.static(conf.path))
 app.use(express.static(__dirname +  '/node_modules'))
 
 
@@ -44,29 +45,26 @@ app.post('/download', function(req, res) {
 
 app.post('/search', function(req, res) {
     var fileName = req.body.fileName;
-    console.log(fileName);
     res.send({
         name : fileName
     })
 })
 
 app.post('/fileList', function(req, res) {
-	var fileList = walk('/Users/ctyloading/Downloads');
+	var fileList = walk(conf.path);
 	res.send(fileList)
 })
 
 app.get('/see/:name', function(req,res){
-    console.log(req.params.name);
     res.send(req.params.name)
 })
 
 app.post('/delete', function(req, res) {
     var name = req.body.name
     var pass = req.body.pass
-    console.log(pass);
     var msg = {}
     if(pass == 'xhz') {
-        remove( "/Users/ctyloading/Downloads/" + name)
+        remove( conf.path + '/' + name)
         msg.error = true;
     } else {
         msg.error = false
